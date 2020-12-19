@@ -39,8 +39,10 @@
     </div>
     <script type="module">
       import { questions } from "./questions.js";
+      import { resTexts } from "./resTexts.js";
+      import { prodJSON } from "./prodJSON.js";
       import { createTest } from "./createTest.js";
-      createTest(questions);
+      createTest(questions, resTexts, prodJSON);
     </script>
   </body>
 </html>
