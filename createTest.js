@@ -5,7 +5,7 @@ export function createTest(questions, resTexts, prodJSON) {
 
   createTestBlock();
 
-  let restart = document.querySelector('.test__restart');
+  let restart = document.querySelector('.test-restart');
   restart.addEventListener('click', function() {
     currQues = 0;
     result = [];
@@ -21,7 +21,7 @@ export function createTest(questions, resTexts, prodJSON) {
       item.classList.add('test-nav__item', 'is-active');
     }
     let button = document.createElement('div');
-    button.classList.add('test-nav__item__button');
+    button.classList.add('test-nav__button');
     button.textContent = i + 1;
     item.append(button);
     navList.append(item);
@@ -29,7 +29,7 @@ export function createTest(questions, resTexts, prodJSON) {
   let last = document.createElement('div');
   last.classList.add('test-nav__item');
   let button = document.createElement('div');
-  button.classList.add('test-nav__item__button');
+  button.classList.add('test-nav__button');
   button.textContent = '✓';
   last.append(button);
   navList.append(last);
@@ -57,7 +57,7 @@ export function createTest(questions, resTexts, prodJSON) {
     updateCounter();
 
     let questionText = document.createElement('div');
-    questionText.classList.add('test__question');
+    questionText.classList.add('test-question');
     let questionTextWrapper = document.createElement('div');
     questionTextWrapper.classList.add('test-question__wrapper');
     questionTextWrapper.textContent = questions[currQues].text;
@@ -112,7 +112,7 @@ export function createTest(questions, resTexts, prodJSON) {
 
   function updateTestBlock() {
 
-    let resultBlock = document.querySelector('.test__result');
+    let resultBlock = document.querySelector('.test-result');
     if (resultBlock) resultBlock.remove();
 
     let questionBlock = document.querySelector('.test__block');
@@ -167,7 +167,7 @@ export function createTest(questions, resTexts, prodJSON) {
   function createResultBlock() {
 
     let resultTextBlock = document.createElement('div');
-    resultTextBlock.classList.add('test__result__text');
+    resultTextBlock.classList.add('test-result__text');
     let resultText ='';
     for (let i = 0; i < resTexts.length; i++) {
       if (resTexts[i][result[i]]) {
@@ -177,17 +177,21 @@ export function createTest(questions, resTexts, prodJSON) {
     resultTextBlock.textContent = resultText;
 
     let productBlock = document.createElement('div');
-    productBlock.classList.add('test__result__product');
+    productBlock.classList.add('test-result__list');
     let products = JSON.parse(prodJSON);
     for (let product of products) {
       let productItem = createProductItem(product);
       productBlock.append(productItem);
     }
 
+    let resultTitle = document.createElement('div');
+    resultTitle.classList.add('test-result__title');
+    resultTitle.textContent = 'Результат подбора продукта';
+
     let resultBlock = document.createElement('div');
-    resultBlock.classList.add('test__result');
-    resultBlock.textContent = 'Результат подбора продукта';
-    resultBlock.append(resultTextBlock, productBlock);
+    resultBlock.classList.add('test-result');
+
+    resultBlock.append(resultTitle, resultTextBlock, productBlock);
 
     let test = document.querySelector('.test');
     test.append(resultBlock);
@@ -197,26 +201,26 @@ export function createTest(questions, resTexts, prodJSON) {
   function createProductItem(product) {
 
     let productItem = document.createElement('div');
-    productItem.classList.add('test__result__product__item');
+    productItem.classList.add('test-product');
 
     for (let key in product) {
       if (key == 'id') {
         continue;
       } else if (key == 'image') {
         let img = document.createElement('img');
-        img.classList.add('test__result__product__item__img')
+        img.classList.add('test-product__img')
         img.src = product[key];
         productItem.append(img);
       } else {
         let div = document.createElement('div');
-        div.classList.add('test__result__product__item__' + key)
+        div.classList.add('test-product__' + key)
         div.textContent = product[key];
         productItem.append(div);
       }
     }
 
     let buy = document.createElement('button');
-    buy.classList.add('test__result__product__item__buy');
+    buy.classList.add('test-product__button', 'btn', 'btn_blue');
     buy.textContent = 'Купить продукт';
 
     productItem.append(buy);
