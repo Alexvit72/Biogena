@@ -16,16 +16,22 @@ export function createTest(questions, resTexts, prodJSON) {
   let navList = document.querySelector('.test-nav__list');
   for (let i = 0; i < questions.length; i++) {
     let item = document.createElement('div');
-    item.classList.add('test-nav__list__item');
+    item.classList.add('test-nav__item');
     if (i == 0) {
-      item.classList.add('test-nav__list__item_active');
+      item.classList.add('test-nav__item', 'is-active');
     }
-    item.textContent = i + 1;
+    let button = document.createElement('div');
+    button.classList.add('test-nav__item__button');
+    button.textContent = i + 1;
+    item.append(button);
     navList.append(item);
   }
   let last = document.createElement('div');
-  last.classList.add('test-nav__list__item');
-  last.textContent = '✓';
+  last.classList.add('test-nav__item');
+  let button = document.createElement('div');
+  button.classList.add('test-nav__item__button');
+  button.textContent = '✓';
+  last.append(button);
   navList.append(last);
 
   let next = document.querySelector('.js-nav-next');
@@ -52,7 +58,10 @@ export function createTest(questions, resTexts, prodJSON) {
 
     let questionText = document.createElement('div');
     questionText.classList.add('test__question');
-    questionText.textContent = questions[currQues].text;
+    let questionTextWrapper = document.createElement('div');
+    questionTextWrapper.classList.add('test-question__wrapper');
+    questionTextWrapper.textContent = questions[currQues].text;
+    questionText.append(questionTextWrapper);
 
     let questionRow = createQuestionRow();
 
@@ -76,12 +85,12 @@ export function createTest(questions, resTexts, prodJSON) {
       nav.classList.remove('test-nav_hidden');
     }
 
-    let items = nav.querySelectorAll('.test-nav__list__item');
+    let items = nav.querySelectorAll('.test-nav__item');
     for (let i = 0; i < items.length; i++) {
       if (i <= currQues) {
-        items[i].classList.add('test-nav__list__item_active');
+        items[i].classList.add('is-active');
       } else {
-        items[i].classList.remove('test-nav__list__item_active');
+        items[i].classList.remove('is-active');
       }
     }
 
@@ -111,8 +120,8 @@ export function createTest(questions, resTexts, prodJSON) {
 
     updateCounter();
 
-    let questionText = questionBlock.querySelector('.test__question');
-    questionText.textContent = questions[currQues].text;
+    let questionTextWrapper = questionBlock.querySelector('.test-question__wrapper');
+    questionTextWrapper.textContent = questions[currQues].text;
 
     let questionRow = questionBlock.querySelector('.test__row');
     questionRow.remove();
@@ -205,7 +214,7 @@ export function createTest(questions, resTexts, prodJSON) {
         productItem.append(div);
       }
     }
-    
+
     let buy = document.createElement('button');
     buy.classList.add('test__result__product__item__buy');
     buy.textContent = 'Купить продукт';
