@@ -36,4 +36,14 @@ let products = [
   },
 ];
 
-export let prodJSON = JSON.stringify(products);
+function randomElems(arr) {
+  let res = [];
+  let length = Math.floor(Math.random() * 2) + 1;
+  for (let i = 0; i < length; i++) {
+    let index =
+    res[i] = arr.splice(Math.floor(Math.random() * arr.length), 1)[0];
+  }
+  return res;
+}
+
+export let prodJSON = JSON.stringify(randomElems(products));

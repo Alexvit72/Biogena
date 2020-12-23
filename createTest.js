@@ -113,7 +113,12 @@ export function createTest(questions, resTexts, prodJSON) {
   function updateTestBlock() {
 
     let resultBlock = document.querySelector('.test-result');
-    if (resultBlock) resultBlock.remove();
+    if (resultBlock) {
+      resultBlock.classList.add('test-hidden');
+      let units = resultBlock.querySelectorAll('.test-result__unit');
+      units.forEach(unit => unit.remove());
+    }
+
 
     let questionBlock = document.querySelector('.test__block');
     questionBlock.classList.remove('test__block_hidden');
@@ -151,7 +156,7 @@ export function createTest(questions, resTexts, prodJSON) {
           let questionBlock = document.querySelector('.test__block');
           questionBlock.classList.add('test__block_hidden');
           console.log(JSON.stringify(result));
-          createResultBlock();
+          showResultBlock();
         } else {
           updateTestBlock();
           updateCounter();
@@ -164,10 +169,12 @@ export function createTest(questions, resTexts, prodJSON) {
 
   }
 
-  function createResultBlock() {
+  function showResultBlock() {
 
-    let resultTextBlock = document.createElement('div');
-    resultTextBlock.classList.add('test-result__text');
+    let resultBlock = document.querySelector('.test-result');
+    resultBlock.classList.remove('test-hidden');
+
+    let resultTextBlock = resultBlock.querySelector('.js-test-result-text');
     let resultText ='';
     for (let i = 0; i < resTexts.length; i++) {
       if (resTexts[i][result[i]]) {
@@ -176,29 +183,19 @@ export function createTest(questions, resTexts, prodJSON) {
     }
     resultTextBlock.textContent = resultText;
 
-    let productBlock = document.createElement('div');
-    productBlock.classList.add('test-result__list');
+    let productBlock = document.querySelector('.test-result__list');
     let products = JSON.parse(prodJSON);
     for (let product of products) {
-      let productItem = createProductItem(product);
-      productBlock.append(productItem);
+      let productUnit = createProductUnit(product);
+      productBlock.append(productUnit);
     }
-
-    let resultTitle = document.createElement('div');
-    resultTitle.classList.add('test-result__title');
-    resultTitle.textContent = 'Результат подбора продукта';
-
-    let resultBlock = document.createElement('div');
-    resultBlock.classList.add('test-result');
-
-    resultBlock.append(resultTitle, resultTextBlock, productBlock);
-
-    let test = document.querySelector('.test');
-    test.append(resultBlock);
 
   }
 
-  function createProductItem(product) {
+  function createProductUnit(product) {
+
+    let unit = document.createElement('div');
+    unit.classList.add('test-result__unit');
 
     let productItem = document.createElement('div');
     productItem.classList.add('test-product');
@@ -207,13 +204,20 @@ export function createTest(questions, resTexts, prodJSON) {
       if (key == 'id') {
         continue;
       } else if (key == 'image') {
+
+        let link = document.createElement('a');
+        link.classList.add('test-product__image');
+
         let img = document.createElement('img');
-        img.classList.add('test-product__img')
+        img.classList.add('js-result-product-img')
         img.src = product[key];
-        productItem.append(img);
+
+        link.append(img);
+        productItem.append(link);
+
       } else {
         let div = document.createElement('div');
-        div.classList.add('test-product__' + key)
+        div.classList.add('test-product__' + key, 'js-result-product-' + key);
         div.textContent = product[key];
         productItem.append(div);
       }
@@ -222,10 +226,10 @@ export function createTest(questions, resTexts, prodJSON) {
     let buy = document.createElement('button');
     buy.classList.add('test-product__button', 'btn', 'btn_blue');
     buy.textContent = 'Купить продукт';
-
     productItem.append(buy);
 
-    return productItem;
+    unit.append(productItem);
+    return unit;
 
   }
 
