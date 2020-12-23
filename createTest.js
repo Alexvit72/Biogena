@@ -184,6 +184,7 @@ export function createTest(questions, resTexts, prodJSON) {
     resultTextBlock.textContent = resultText;
 
     let productBlock = document.querySelector('.test-result__list');
+    
     let products = JSON.parse(prodJSON);
     for (let product of products) {
       let productUnit = createProductUnit(product);
