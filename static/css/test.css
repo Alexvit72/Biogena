@@ -1,6 +1,9 @@
 .test {
 	padding-top: 60px;
 }
+.test-hidden {
+	display: none;
+}
 .test__top {
 	padding-bottom: 60px;
 	text-align: center;
@@ -144,9 +147,6 @@
 }
 .test__block_hidden, .test-nav__button_hidden, .test-nav_hidden {
   display: none;
-}
-.test-result {
-	display: none;
 }
 .test-result__row {
 	display: flex;
