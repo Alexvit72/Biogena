@@ -8649,7 +8649,7 @@ null==d?void 0:d))},attrHooks:{type:{set:function(a,b){if(!o.radioValue&&"radio"
 }));
 
 $(document).ready(function(){
-  /* смена состояний иконка избранного */
+  /* ??????????? ????? */
   $('.js-search-input').on('focus', function () {
     $('body').addClass('is-fixed');
     $('.js-search-bg').fadeIn();
@@ -8817,6 +8817,10 @@ $(function() {
         $parent_box.toggleClass('nav-b__item-toggle_active');
 
         return false;
+    });
+
+    $('.js-test-form-button').on('click', function () {
+        $('.js-test-form').fadeIn();
     });
 
 

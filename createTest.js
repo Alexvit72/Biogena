@@ -5,7 +5,7 @@ export function createTest(questions, resTexts, prodJSON) {
 
   createTestBlock();
 
-  let restart = document.querySelector('.test-restart');
+  let restart = document.querySelector('.js-test-restart');
   restart.addEventListener('click', function() {
     currQues = 0;
     result = [];
@@ -13,7 +13,7 @@ export function createTest(questions, resTexts, prodJSON) {
     updateNav();
   });
 
-  let navList = document.querySelector('.test-nav__list');
+  let navList = document.querySelector('.js-test-nav-list');
   for (let i = 0; i < questions.length; i++) {
     let item = document.createElement('div');
     item.classList.add('test-nav__item');
@@ -34,7 +34,7 @@ export function createTest(questions, resTexts, prodJSON) {
   last.append(button);
   navList.append(last);
 
-  let next = document.querySelector('.js-nav-next');
+  let next = document.querySelector('.js-test-nav-next');
   next.addEventListener('click', function() {
     if (currQues < result.length) {
       currQues++;
@@ -43,7 +43,7 @@ export function createTest(questions, resTexts, prodJSON) {
     }
   });
 
-  let prev = document.querySelector('.js-nav-prev');
+  let prev = document.querySelector('.js-test-nav-prev');
   prev.addEventListener('click', function() {
       currQues--;
       updateTestBlock();
@@ -94,14 +94,14 @@ export function createTest(questions, resTexts, prodJSON) {
       }
     }
 
-    let next = document.querySelector('.js-nav-next');
+    let next = document.querySelector('.js-test-nav-next');
     if (currQues == questions.length - 1) {
       next.classList.add('test-nav__button_hidden');
     } else {
       next.classList.remove('test-nav__button_hidden');
     }
 
-    let prev = document.querySelector('.js-nav-prev');
+    let prev = document.querySelector('.js-test-nav-prev');
     if (currQues == 0) {
       prev.classList.add('test-nav__button_hidden');
     } else {
