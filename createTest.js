@@ -1,12 +1,19 @@
-async function createTest() {
+function createTest() {
 
   let questions;
-  let responseQuestions = await fetch('questions.js');
-  if (responseQuestions.ok) {
-  questions = await responseQuestions.json();
-  } else {
-    alert('Ошибка HTTP' + responseQuestions.status);
-  }
+  let xhrQuestions = new XMLHttpRequest();
+  xhrQuestions.open('GET', 'questions.js', false);
+  try {
+    xhrQuestions.send();
+      if (xhrQuestions.status != 200) {
+        alert('Ошибка ' + xhr.status);
+      } else {
+        questions = JSON.parse(xhrQuestions.response);
+      }
+    } catch(err) {
+      alert("Запрос не удался");
+    }
+
 
   let currQues = 0;
   let result = [];
@@ -31,16 +38,16 @@ async function createTest() {
     let button = document.createElement('div');
     button.classList.add('test-nav__button');
     button.textContent = i + 1;
-    item.append(button);
-    navList.append(item);
+    item.appendChild(button);
+    navList.appendChild(item);
   }
   let last = document.createElement('div');
   last.classList.add('test-nav__item');
   let button = document.createElement('div');
   button.classList.add('test-nav__button');
   button.textContent = '✓';
-  last.append(button);
-  navList.append(last);
+  last.appendChild(button);
+  navList.appendChild(last);
 
   let next = document.querySelector('.js-test-nav-next');
   next.addEventListener('click', function() {
@@ -69,11 +76,12 @@ async function createTest() {
     let questionTextWrapper = document.createElement('div');
     questionTextWrapper.classList.add('test-question__wrapper');
     questionTextWrapper.textContent = questions[currQues].text;
-    questionText.append(questionTextWrapper);
+    questionText.appendChild(questionTextWrapper);
 
     let questionRow = createQuestionRow();
 
-    questionBlock.append(questionText, questionRow);
+    questionBlock.appendChild(questionText);
+    questionBlock.appendChild(questionRow);
 
   }
 
@@ -124,7 +132,9 @@ async function createTest() {
     if (resultBlock) {
       resultBlock.classList.add('test-hidden');
       let units = resultBlock.querySelectorAll('.test-result__unit');
-      units.forEach(unit => unit.remove());
+      for (let i = 0; i < units.length; i++) {
+        units[i].remove();
+      }
     }
 
     let questionBlock = document.querySelector('.test__block');
@@ -136,9 +146,9 @@ async function createTest() {
     questionTextWrapper.textContent = questions[currQues].text;
 
     let questionRow = questionBlock.querySelector('.test__row');
-    questionRow.remove();
+    questionBlock.removeChild(questionRow);
     let newQuestionRow = createQuestionRow();
-    questionBlock.append(newQuestionRow);
+    questionBlock.appendChild(newQuestionRow);
 
   }
 
@@ -146,14 +156,15 @@ async function createTest() {
 
     let questionRow = document.createElement('div');
     questionRow.classList.add('test__row');
-    for (let answer of questions[currQues].answers) {
+    for (let i = 0; i < questions[currQues].answers.length; i++) {
       let item = document.createElement('div');
       item.classList.add('test__item');
       let button = document.createElement('div');
-      button.classList.add('test__button', 'js-button');
-      button.textContent = answer;
-      item.append(button);
-      questionRow.append(item);
+      button.classList.add('test__button');
+      button.classList.add('js-button');
+      button.textContent = questions[currQues].answers[i];
+      item.appendChild(button);
+      questionRow.appendChild(item);
     }
     questionRow.addEventListener('click', function(event) {
       if (event.target.classList.contains('js-button')) {
@@ -175,14 +186,14 @@ async function createTest() {
 
   }
 
-  async function showResultBlock(result) {
+  function showResultBlock(result) {
 
     let resultBlock = document.querySelector('.test-result');
     resultBlock.classList.remove('test-hidden');
 
     let resultTextBlock = resultBlock.querySelector('.js-test-result-text');
     let resultText;
-    let responseText = await fetch('resTexts.js', {
+    let responseText = fetch('resTexts.js', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
@@ -190,7 +201,7 @@ async function createTest() {
       body: JSON.stringify(result)
     });
     if (responseText.ok) {
-    resultText = await responseText.json();
+    resultText = responseText.json();
     } else {
       alert('Ошибка HTTP' + responseText.status);
     }
@@ -207,7 +218,7 @@ async function createTest() {
 
     let productBlock = document.querySelector('.test-result__list');
     let products;
-    let response = await fetch('prodjson.js', {
+    let response = fetch('prodjson.js', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
@@ -215,7 +226,7 @@ async function createTest() {
       body: JSON.stringify(result)
     });
     if (response.ok) {
-    products = await response.json();
+    products = response.json();
     } else {
       alert('Ошибка HTTP' + response.status);
     }
@@ -231,9 +242,9 @@ async function createTest() {
     products = randomElems(products);
 //---------------------- Конец временного блока  -------------------------------------
 
-    for (let product of products) {
-      let productUnit = createProductUnit(product);
-      productBlock.append(productUnit);
+    for (let i = 0; i < products.length; i++) {
+      let productUnit = createProductUnit(products[i]);
+      productBlock.appendChild(productUnit);
     }
 
   }
@@ -258,23 +269,23 @@ async function createTest() {
         img.classList.add('js-result-product-img')
         img.src = product[key];
 
-        link.append(img);
-        productItem.append(link);
+        link.appendChild(img);
+        productItem.appendChild(link);
 
       } else {
         let div = document.createElement('div');
         div.classList.add('test-product__' + key, 'js-result-product-' + key);
         div.textContent = product[key];
-        productItem.append(div);
+        productItem.appendChild(div);
       }
     }
 
     let buy = document.createElement('button');
     buy.classList.add('test-product__button', 'btn', 'btn_blue');
     buy.textContent = 'Купить продукт';
-    productItem.append(buy);
+    productItem.appendChild(buy);
 
-    unit.append(productItem);
+    unit.appendChild(productItem);
     return unit;
 
   }
