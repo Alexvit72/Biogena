@@ -168,19 +168,17 @@
 }
 .test-result__text {
 	text-align: justify;
-	margin-bottom: 40px;
 	background-color: #C8E4F2;
 	padding: 48px;
 	font-size: 14px; 
 }
 .test-result__list {
 	display: flex;
-	flex-wrap: wrap;
 }
 .test-result__unit {
 	width: 50%;
 	min-width: 50%;
-	padding: 20px 20px 40px;
+	padding: 20px 20px 0;
 }
 .test-product	{
 	height: 100%;
@@ -297,10 +295,33 @@
 .test-question__wrapper {
 	font-size: 24px;
 }
+.test-result__title {
+	margin-bottom: 20px;
 }
-@media screen and (max-width: 400px){
-.test-product {
+.test-links {
+	display: block;
+}
+.test-links__item {
 	width: 100%;
 	min-width: 100%;
-}	
+}
+.test-product__description {
+	margin-bottom: 10px;
+}
+}
+@media screen and (max-width: 460px){
+.test-result {
+	overflow: hidden;
+}
+.test-result__list {
+	margin: 0 -15px;
+	padding: 0 15vw;
+	overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.test-result__unit {
+	width: 100%;
+	min-width: 100%;
+	padding: 15px 15px 0;
+}
 }
