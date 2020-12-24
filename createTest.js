@@ -1,4 +1,4 @@
-export function createTest(questions, resTexts, prodJSON) {
+export function createTest(questions, resTexts) {
 
   let currQues = 0;
   let result = [];
@@ -155,8 +155,7 @@ export function createTest(questions, resTexts, prodJSON) {
         if (currQues == questions.length) {
           let questionBlock = document.querySelector('.test__block');
           questionBlock.classList.add('test__block_hidden');
-          console.log(JSON.stringify(result));
-          showResultBlock();
+          showResultBlock(result);
         } else {
           updateTestBlock();
           updateCounter();
@@ -169,7 +168,7 @@ export function createTest(questions, resTexts, prodJSON) {
 
   }
 
-  function showResultBlock() {
+  async function showResultBlock(result) {
 
     let resultBlock = document.querySelector('.test-result');
     resultBlock.classList.remove('test-hidden');
@@ -184,8 +183,31 @@ export function createTest(questions, resTexts, prodJSON) {
     resultTextBlock.textContent = resultText;
 
     let productBlock = document.querySelector('.test-result__list');
-    
-    let products = JSON.parse(prodJSON);
+    let products;
+    let response = await fetch('prodjson.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify(result)
+    });
+    if (response.ok) {
+    products = await response.json();
+    } else {
+      alert('Ошибка HTTP' + response.status);
+    }
+/*------ Этот блок временный, случайным образом выводит 1 или 2 продукта. После реализации бэкэнд-логики его нужно просто удалить. )  ------------------------*/
+    function randomElems(arr) {
+      let res = [];
+      let length = Math.floor(Math.random() * 2) + 1;
+      for (let i = 0; i < length; i++) {
+        res[i] = arr.splice(Math.floor(Math.random() * arr.length), 1)[0];
+      }
+      return res;
+    }
+    products = randomElems(products);
+//---------------------- Конец временного блока  -------------------------------
+
     for (let product of products) {
       let productUnit = createProductUnit(product);
       productBlock.append(productUnit);
