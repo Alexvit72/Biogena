@@ -1,4 +1,4 @@
-export function createTest(questions, resTexts) {
+export function createTest(questions) {
 
   let currQues = 0;
   let result = [];
@@ -174,12 +174,28 @@ export function createTest(questions, resTexts) {
     resultBlock.classList.remove('test-hidden');
 
     let resultTextBlock = resultBlock.querySelector('.js-test-result-text');
-    let resultText ='';
-    for (let i = 0; i < resTexts.length; i++) {
-      if (resTexts[i][result[i]]) {
-        resultText += resTexts[i][result[i]];
+    let resultText;
+    let responseText = await fetch('resTexts.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify(result)
+    });
+    if (responseText.ok) {
+    resultText = await responseText.json();
+    } else {
+      alert('Ошибка HTTP' + responseText.status);
+    }
+/*------ Это временный блок, который собирает текст результата подбора продукта на основании ответов. После реализации бэкэнд-логики его нужно просто удалить. ) ------ */
+    let outputText = '';
+    for (let i = 0; i < resultText.length; i++) {
+      if (resultText[i][result[i]]) {
+        outputText += resultText[i][result[i]];
       }
     }
+    resultText = outputText;
+//---------------------- Конец временного блока  -------------------------------------
     resultTextBlock.textContent = resultText;
 
     let productBlock = document.querySelector('.test-result__list');
@@ -196,7 +212,7 @@ export function createTest(questions, resTexts) {
     } else {
       alert('Ошибка HTTP' + response.status);
     }
-/*------ Этот блок временный, случайным образом выводит 1 или 2 продукта. После реализации бэкэнд-логики его нужно просто удалить. )  ------------------------*/
+/*------ Этот блок временный, который случайным образом выводит 1 или 2 продукта. После реализации бэкэнд-логики его нужно просто удалить. )  ------------------------*/
     function randomElems(arr) {
       let res = [];
       let length = Math.floor(Math.random() * 2) + 1;
@@ -206,7 +222,7 @@ export function createTest(questions, resTexts) {
       return res;
     }
     products = randomElems(products);
-//---------------------- Конец временного блока  -------------------------------
+//---------------------- Конец временного блока  -------------------------------------
 
     for (let product of products) {
       let productUnit = createProductUnit(product);
