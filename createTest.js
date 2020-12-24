@@ -127,7 +127,6 @@ async function createTest() {
       units.forEach(unit => unit.remove());
     }
 
-
     let questionBlock = document.querySelector('.test__block');
     questionBlock.classList.remove('test__block_hidden');
 
@@ -220,7 +219,7 @@ async function createTest() {
     } else {
       alert('Ошибка HTTP' + response.status);
     }
-/*------ Этот блок временный, который случайным образом выводит 1 или 2 продукта. После реализации бэкэнд-логики его нужно просто удалить. )  ------------------------*/
+/*------ Это временный блок, который случайным образом выводит 1 или 2 продукта. После реализации бэкэнд-логики его нужно просто удалить. )  ------------------------*/
     function randomElems(arr) {
       let res = [];
       let length = Math.floor(Math.random() * 2) + 1;
