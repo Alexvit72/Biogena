@@ -14,7 +14,6 @@ function createTest() {
       alert("Запрос не удался");
     }
 
-
   let currQues = 0;
   let result = [];
 
@@ -131,9 +130,10 @@ function createTest() {
     let resultBlock = document.querySelector('.test-result');
     if (resultBlock) {
       resultBlock.classList.add('test-hidden');
-      let units = resultBlock.querySelectorAll('.test-result__unit');
+      let resultList = document.querySelector('.test-result__list');
+      let units = resultList.querySelectorAll('.test-result__unit');
       for (let i = 0; i < units.length; i++) {
-        units[i].remove();
+        resultList.removeChild(units[i]);
       }
     }
 
@@ -193,58 +193,55 @@ function createTest() {
 
     let resultTextBlock = resultBlock.querySelector('.js-test-result-text');
     let resultText;
-    let responseText = fetch('resTexts.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8'
-      },
-      body: JSON.stringify(result)
-    });
-    if (responseText.ok) {
-    resultText = responseText.json();
-    } else {
-      alert('Ошибка HTTP' + responseText.status);
-    }
+    let responseText = new XMLHttpRequest();
+    responseText.open('POST', 'resTexts.js');
+    responseText.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    responseText.send(JSON.stringify(result));
+    responseText.onload = function() {
+      if (responseText.status != 200) {
+        alert('Ошибка ' + responseText.status);
+      } else {
+        resultText = JSON.parse(responseText.response);
 /*------ Это временный блок, который собирает текст результата подбора продукта на основании ответов. После реализации бэкэнд-логики его нужно просто удалить. ) ------ */
-    let outputText = '';
-    for (let i = 0; i < resultText.length; i++) {
-      if (resultText[i][result[i]]) {
-        outputText += resultText[i][result[i]];
+        let outputText = '';
+        for (let i = 0; i < resultText.length; i++) {
+          if (resultText[i][result[i]]) {
+            outputText += resultText[i][result[i]];
+          }
+        }
+        resultText = outputText;
+    //---------------------- Конец временного блока  -------------------------------------
+        resultTextBlock.textContent = resultText;
       }
     }
-    resultText = outputText;
-//---------------------- Конец временного блока  -------------------------------------
-    resultTextBlock.textContent = resultText;
 
     let productBlock = document.querySelector('.test-result__list');
     let products;
-    let response = fetch('prodjson.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8'
-      },
-      body: JSON.stringify(result)
-    });
-    if (response.ok) {
-    products = response.json();
-    } else {
-      alert('Ошибка HTTP' + response.status);
-    }
+    let responseProducts = new XMLHttpRequest();
+    responseProducts.open('POST', 'prodjson.js');
+    responseProducts.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    responseProducts.send(JSON.stringify(result));
+    responseProducts.onload = function() {
+      if (responseProducts.status != 200) {
+        alert('Ошибка ' + responseProducts.status);
+      } else {
+        products = JSON.parse(responseProducts.response);
 /*------ Это временный блок, который случайным образом выводит 1 или 2 продукта. После реализации бэкэнд-логики его нужно просто удалить. )  ------------------------*/
-    function randomElems(arr) {
-      let res = [];
-      let length = Math.floor(Math.random() * 2) + 1;
-      for (let i = 0; i < length; i++) {
-        res[i] = arr.splice(Math.floor(Math.random() * arr.length), 1)[0];
-      }
-      return res;
-    }
-    products = randomElems(products);
+        function randomElems(arr) {
+          let res = [];
+          let length = Math.floor(Math.random() * 2) + 1;
+          for (let i = 0; i < length; i++) {
+            res[i] = arr.splice(Math.floor(Math.random() * arr.length), 1)[0];
+          }
+          return res;
+        }
+        products = randomElems(products);
 //---------------------- Конец временного блока  -------------------------------------
-
-    for (let i = 0; i < products.length; i++) {
-      let productUnit = createProductUnit(products[i]);
-      productBlock.appendChild(productUnit);
+        for (let i = 0; i < products.length; i++) {
+          let productUnit = createProductUnit(products[i]);
+          productBlock.appendChild(productUnit);
+        }
+      }
     }
 
   }
@@ -281,7 +278,9 @@ function createTest() {
     }
 
     let buy = document.createElement('button');
-    buy.classList.add('test-product__button', 'btn', 'btn_blue');
+    buy.classList.add('test-product__button');
+    buy.classList.add('btn');
+    buy.classList.add('btn_blue');
     buy.textContent = 'Купить продукт';
     productItem.appendChild(buy);
 
