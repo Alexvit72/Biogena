@@ -1,4 +1,12 @@
-export function createTest(questions) {
+async function createTest() {
+
+  let questions;
+  let responseQuestions = await fetch('questions.js');
+  if (responseQuestions.ok) {
+  questions = await responseQuestions.json();
+  } else {
+    alert('Ошибка HTTP' + responseQuestions.status);
+  }
 
   let currQues = 0;
   let result = [];
@@ -273,3 +281,5 @@ export function createTest(questions) {
   }
 
 }
+
+createTest();
