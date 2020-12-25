@@ -203,7 +203,7 @@ function createTest() {
       } else {
         resultText = JSON.parse(responseText.response);
 /*------ Это временный блок, который собирает текст результата подбора продукта на основании ответов. После реализации бэкэнд-логики его нужно просто удалить. ) ------ */
-        let outputText = '';
+       let outputText = '';
         for (let i = 0; i < resultText.length; i++) {
           if (resultText[i][result[i]]) {
             outputText += resultText[i][result[i]];
