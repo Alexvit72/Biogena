@@ -6,7 +6,7 @@ function createTest() {
   try {
     xhrQuestions.send();
       if (xhrQuestions.status != 200) {
-        alert('Ошибка ' + xhr.status);
+        alert('Ошибка ' + xhrQuestions.status);
       } else {
         questions = JSON.parse(xhrQuestions.response);
       }
