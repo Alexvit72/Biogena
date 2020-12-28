@@ -196,8 +196,8 @@ async function createTest() {
     }
 /*------ Это временный блок, который собирает текст результата подбора продукта на основании ответов. После реализации бэкэнд-логики его нужно просто удалить. ) ------ */
     let outputText = '';
-    for (let i = 0; i < resultText.length; i++) {
-      if (resultText[i][result[i]]) {
+    for (let i = 0; i < result.length; i++) {
+      if (resultText[i].length) {
         outputText += resultText[i][result[i]];
       }
     }
