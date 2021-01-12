@@ -296,19 +296,19 @@ a.green:hover {
 		float: none;
 		width: auto;
 	}
-	
+
 	/* line 655, ../scss/core/_common.scss */
 	.col3-layout .col-wrapper {
 		float: none;
 		width: auto;
 	}
-	
+
 	/* line 660, ../scss/core/_common.scss */
 	.col-main {
 		float: none;
 		width: auto;
 	}
-	
+
 	/* line 665, ../scss/core/_common.scss */
 	.col-main .col-left {
 		padding: 0;
@@ -958,7 +958,7 @@ body {
 	}
 }
 .slider-b__tags {
-	
+
 	position: relative;
 	z-index: 3;
 	display: -webkit-box;
@@ -972,8 +972,8 @@ body {
 	justify-content: center;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	
-	
+
+
 }
 .slider-b__tag {
 	border: 2px solid #fff;
@@ -4587,15 +4587,15 @@ body.compensate-for-scrollbar {
 		padding-left: 6px;
 		padding-right: 6px;
 	}
-	
+
 	.fancybox-slide--image {
 		padding: 6px 0;
 	}
-	
+
 	.fancybox-close-small {
 		right: -6px;
 	}
-	
+
 	.fancybox-slide--image .fancybox-close-small {
 		background: #4e4e4e;
 		color: #f2f4f6;
@@ -4606,12 +4606,12 @@ body.compensate-for-scrollbar {
 		top: 0;
 		width: 36px;
 	}
-	
+
 	.fancybox-caption {
 		padding-left: 12px;
 		padding-right: 12px;
 	}
-	
+
 	@supports (padding: max(0px)) {
 		.fancybox-caption {
 			padding-left: max(12px, env(safe-area-inset-left));
@@ -4831,11 +4831,11 @@ body.compensate-for-scrollbar {
 	.fancybox-thumbs {
 		width: 110px;
 	}
-	
+
 	.fancybox-show-thumbs .fancybox-inner {
 		right: 110px;
 	}
-	
+
 	.fancybox-thumbs__list a {
 		max-width: calc(100% - 10px);
 	}
@@ -4847,20 +4847,20 @@ body.compensate-for-scrollbar {
 {
 	font-size: 0;
 	line-height: 0;
-	
+
 	position: absolute;
 	top: 50%;
-	
+
 	display: block;
-	
+
 	width: 20px;
 	height: 20px;
 	padding: 0;
 	-webkit-transform: translate(0, -50%);
 	transform: translate(0, -50%);
-	
+
 	cursor: pointer;
-	
+
 	color: transparent;
 	border: none;
 	outline: none;
@@ -4893,10 +4893,10 @@ body.compensate-for-scrollbar {
 {
 	font-size: 20px;
 	line-height: 1;
-	
+
 	opacity: .75;
 	color: white;
-	
+
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -4947,15 +4947,15 @@ body.compensate-for-scrollbar {
 .slick-slider
 {
 	position: relative;
-	
+
 	display: block;
 	box-sizing: border-box;
-	
+
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	
+
 	-webkit-touch-callout: none;
 	-khtml-user-select: none;
 	-ms-touch-action: pan-y;
@@ -4966,10 +4966,10 @@ body.compensate-for-scrollbar {
 .slick-list
 {
 	position: relative;
-	
+
 	display: block;
 	overflow: hidden;
-	
+
 	margin: 0;
 	padding: 0;
 }
@@ -4995,7 +4995,7 @@ body.compensate-for-scrollbar {
 	position: relative;
 	top: 0;
 	left: 0;
-	
+
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -5004,7 +5004,7 @@ body.compensate-for-scrollbar {
 .slick-track:after
 {
 	display: table;
-	
+
 	content: '';
 }
 .slick-track:after
@@ -5020,7 +5020,7 @@ body.compensate-for-scrollbar {
 {
 	display: none;
 	float: left;
-	
+
 	height: 100%;
 	min-height: 1px;
 }
@@ -5060,9 +5060,9 @@ body.scroll-locked {
 .slick-vertical .slick-slide
 {
 	display: block;
-	
+
 	height: auto;
-	
+
 	border: 1px solid transparent;
 }
 .slick-arrow.slick-hidden {
@@ -6408,12 +6408,12 @@ body.scroll-locked {
 		width: 300px;
 		right: 2%;
 	}
-	
+
 	/* line 44, ../scss/layout/_header-cart.scss */
 	.sticky-header #header-cart.skip-active {
 		width: 300px;
 	}
-	
+
 	/* line 48, ../scss/layout/_header-cart.scss */
 	#header-cart .minicart-wrapper {
 		border: solid 1px #D1D2D1;
@@ -6425,7 +6425,7 @@ body.scroll-locked {
 		width: 400px;
 		font-size: 14px;
 	}
-	
+
 	/* line 59, ../scss/layout/_header-cart.scss */
 	.sticky-header #header-cart.skip-active {
 		width: 400px;
@@ -7168,17 +7168,17 @@ a#donations-button:hover {
 	.discount label, .discount input, .discount select, .giftcard label, .giftcard input, .giftcard select {
 		width: 100% !important;
 	}
-	
+
 	/* line 300, ../scss/module/_checkout-cart.scss */
 	.discount label, .giftcard label {
 		padding-bottom: 10px !important;
 	}
-	
+
 	/* line 303, ../scss/module/_checkout-cart.scss */
 	.discount .button-wrapper, .giftcard .button-wrapper {
 		top: 41px !important;
 	}
-	
+
 	/* line 306, ../scss/module/_checkout-cart.scss */
 	.discount {
 		border-bottom: none !important;
@@ -7358,7 +7358,7 @@ a#donations-button:hover {
 	}
 }
 @media only screen and (max-width: 771px) {
-	
+
 	/* line 494, ../scss/module/_checkout-cart.scss */
 	.cart-table colgroup, .cart-table thead {
 		display: none;
@@ -7451,12 +7451,12 @@ a#donations-button:hover {
 	.cart-table .qty-wrapper {
 		display: inline;
 	}
-	
+
 	/* line 577, ../scss/module/_checkout-cart.scss */
 	.actions-wrapper button {
 		font-size: 0.88rem;
 	}
-	
+
 	.cart-table td.product-cart-price {
 		margin-bottom: 7px;
 		width: 75%;
@@ -7519,7 +7519,7 @@ a#donations-button:hover {
 	.checkout-cart-index .col-top {
 		display: block;
 	}
-	
+
 	/* line 590, ../scss/module/_checkout-cart.scss */
 	.cart {
 		/* Before totals CMS block */
@@ -7591,7 +7591,7 @@ a#donations-button:hover {
 		padding: 0;
 		margin: 1%;
 	}
-	
+
 	/* line 661, ../scss/module/_checkout-cart.scss */
 	.gift-product .remove-wrapper {
 		display: block;
@@ -8096,12 +8096,12 @@ a#donations-button:hover {
 	#checkout-review-table thead > tr > th:first-child {
 		display: block;
 	}
-	
+
 	/* line 773, ../scss/module/_checkout-onepage.scss */
 	#checkout-review-table thead > tr > th:first-child {
 		display: block;
 	}
-	
+
 	/* line 776, ../scss/module/_checkout-onepage.scss */
 	.linearize-table tbody td[data-rwd-label] {
 		padding-left: 10px;
@@ -8112,7 +8112,7 @@ a#donations-button:hover {
 	.checkout-onepage-index .progress-top-wrapper {
 		margin: 0 0 30px 0;
 	}
-	
+
 	/* line 793, ../scss/module/_checkout-onepage.scss */
 	.opc .fields label, .opc .wide label {
 		width: 40%;
@@ -8127,7 +8127,7 @@ a#donations-button:hover {
 	.opc .fields .input-box input + input, .opc .wide .input-box input + input {
 		margin-top: 20px;
 	}
-	
+
 	/* line 809, ../scss/module/_checkout-onepage.scss */
 	.opc #opc-login input#login-email {
 		margin-left: 15px;
@@ -8148,13 +8148,13 @@ a#donations-button:hover {
 	.opc #opc-login #form_select input.input-text {
 		width: 200px;
 	}
-	
+
 	/* line 832, ../scss/module/_checkout-onepage.scss */
 	#checkout-shipping-method-load {
 		float: left;
 		width: 100%;
 	}
-	
+
 	/* line 837, ../scss/module/_checkout-onepage.scss */
 	#shipping-method-info {
 		float: right;
@@ -8471,7 +8471,7 @@ p.required, .validation-advice {
 #wishlist-table td .btn-remove:before {
 	position: absolute;
 	top: 0;
-	
+
 }
 /* line 181, ../scss/module/_wishlist.scss */
 #wishlist-table .giftregisty-add {
@@ -8591,7 +8591,7 @@ p.required, .validation-advice {
 	#wishlist-table th.customer-wishlist-item-image {
 		display: none;
 	}
-	
+
 }
 @media only screen and (max-width: 479px) {
 	/* line 321, ../scss/module/_wishlist.scss */
@@ -10055,12 +10055,12 @@ sub{
 		height: 2.4em;
 		overflow: hidden;
 	}
-	
+
 	.blog-studies__title{
 		height: 2.6em;
 		overflow: hidden;
 	}
-	
+
 	.blog-studies__desc{
 		height: 10.8em;
 		overflow: hidden;
@@ -10078,7 +10078,7 @@ sub{
 		height: 1.3em;
 		overflow: hidden;
 	}
-	*/	
+	*/
 }
 
 .grid-b__block_goods{
@@ -10382,5 +10382,3 @@ sub{
 /* /local/templates/main/components/bitrix/sale.basket.basket.line/header/style.css?1579874188175 */
 /* /local/templates/main/components/bitrix/sale.basket.basket.line/header_mobile/style.css?1597750019168 */
 /* /local/templates/main/template_styles.css?160431888814899 */
-
-

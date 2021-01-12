@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>default title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta content="telephone=no" name="format-detection">
+        <!-- This make sence for mobile browsers. It means, that content has been optimized for mobile browsers -->
+        <meta name="HandheldFriendly" content="true">
+
+
+        <!--[if (gt IE 9)|!(IE)]><!-->
+        <link href="static/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="static/css/main.css" rel="stylesheet" type="text/css">
+        <link href="static/css/test.css" rel="stylesheet" type="text/css">
+        <!--<![endif]-->
+
+        <meta property="og:title" content="" />
+        <meta property="og:url" content="" />
+        <meta property="og:description" content="" />
+        <meta property="og:image" content="" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="500" />
+        <meta property="og:image:height" content="300" />
+        <meta property="twitter:description" content="" />
+    </head>
+
+    <body>
+
+        <div class="wrapper">
+
+            <section class="content">
+                <div class="row">
+                    <div class="contact-b">
+                        <h2 class="title title_h2 title_middle">Онлайн-консультант по подбору продуктов</h2>
+                        <div class="note-b">
+                            Вам интересно, какие продукты вам подходят? Узнайте об этом всего за несколько шагов: онлайн-консультант поможет выбрать именно то, что вам необходимо в текущем моменте, в соответствии с индивидуальными потребностями.
+                        </div>
+                        <div class="test">
+                            <div class="test__top">
+                                <div class="test-restart js-test-restart">
+                                    <div class="test__icon">
+                                      <i class="fas fa-undo-alt"></i>
+                                    </div>
+                                    <div class="test-restart__text">Начать заново</div>
+                                </div>
+                            </div>
+                            <div class="test__calc">
+                                <div class="test__block">
+                                    <div class="test__counter">
+                                        Вопрос
+                                        <span class="test__counter_current"></span>
+                                        из
+                                        <span class="test__counter_all"></span>
+                                    </div>
+                                </div>
+                                <div class="test-nav">
+                                    <div class="test-nav__arrow test-nav__button_hidden js-test-nav-prev">
+                                        <div class="test__icon">
+                                           <i class="fas fa-chevron-left"></i>
+                                        </div>
+                                    </div>
+                                    <div class="test-nav__list js-test-nav-list">
+                                    </div>
+                                    <div class="test-nav__arrow js-test-nav-next">
+                                        <div class="test__icon">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /test__calc -->
+
+                            <div class="test-result test-hidden">
+                                <div class="test-result__title">Результат подбора продукта</div>
+                                <div class="test-result__row">
+                                    <div class="test-result__item">
+                                        <div class="test-result__text js-test-result-text">
+                                        </div>
+                                    </div>
+                                    <div class="test-result__item">
+                                        <div class="test-result__list">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="test-links">
+                                    <div class="test-links__item">
+                                        <a href="#" class="btn btn_blue js-test-all-button">Добавить все продукты в корзину</a>
+                                    </div>
+                                    <div class="test-links__item">
+                                        <div class="btn btn_border js-test-form-button">Отправить список покупок по электронной почте</div>
+                                    </div>
+                                </div>
+                                <div class="test-form js-test-form test-hidden">
+                                    <form>
+                                        <div class="test-form__field">
+                                            <input type="text" placeholder="E-mail*" class="input-text">
+                                        </div>
+                                        <input type="submit" class="btn btn_blue" value="Send request">
+                                    </form>
+                                </div>
+                            </div> <!-- /test__result -->
+                        </div>
+                        <script src="createTest.js" charset="utf-8"></script>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </body>
+
+</html>

@@ -1,5 +1,3 @@
-function createTest() {
-
   let questions;
   let xhrQuestions = new XMLHttpRequest();
   xhrQuestions.open('GET', 'questions.js', false);
@@ -192,6 +190,7 @@ function createTest() {
     resultBlock.classList.remove('test-hidden');
 
     let resultTextBlock = resultBlock.querySelector('.js-test-result-text');
+
     let resultText;
     let responseText = new XMLHttpRequest();
     responseText.open('POST', 'resTexts.js');
@@ -202,16 +201,16 @@ function createTest() {
         alert('Ошибка ' + responseText.status);
       } else {
         resultText = JSON.parse(responseText.response);
-/*------ Это временный блок, который собирает текст результата подбора продукта на основании ответов. После реализации бэкэнд-логики его нужно просто удалить. ) ------ */
-       let outputText = '';
-        for (let i = 0; i < resultText.length; i++) {
-          if (resultText[i][result[i]]) {
-            outputText += resultText[i][result[i]];
+/*------ Это временный блок, который собирает текст результата подбора продукта на основании ответов. После реализации бэкэнд-логики его нужно просто удалить, а следующую за ним строку раскомментировать. ) ------------------------------------------------- */
+        let outputText = '';
+        for (let i = 0; i < result.length; i++) {
+          if (resultText[i].length) {
+            outputText += (resultText[i][result[i]] + '<br>');
           }
         }
         resultText = outputText;
 //---------------------- Конец временного блока  -------------------------------------
-        resultTextBlock.textContent = resultText;
+        resultTextBlock.innerHTML = resultText;
       }
     }
 
@@ -243,8 +242,28 @@ function createTest() {
         }
       }
     }
-
   }
+
+  let allProducts = document.querySelector('.js-test-all-button');
+  allProducts.addEventListener('click', function(event) {
+    event.preventDefault();
+    if (this.textContent == '✓ Удалить продукты из корзины') {
+      this.textContent = 'Добавить все продукты в корзину';
+    } else {
+      this.textContent = '✓ Удалить продукты из корзины';
+    }
+  });
+
+  let formButton = document.querySelector('.js-test-form-button');
+  formButton.addEventListener('click', function() {
+    let formDiv = document.querySelector('.js-test-form');
+    formDiv.classList.remove('test-hidden');
+    let form = formDiv.querySelector('form');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      formDiv.classList.add('test-hidden');
+    });
+  });
 
   function createProductUnit(product) {
 
@@ -282,13 +301,16 @@ function createTest() {
     buy.classList.add('btn');
     buy.classList.add('btn_blue');
     buy.textContent = 'Купить продукт';
+    buy.addEventListener('click', function() {
+      if (this.textContent == '✓ Отменить') {
+        this.textContent = 'Купить продукт';
+      } else {
+        this.textContent = '✓ Отменить';
+      }
+    });
     productItem.appendChild(buy);
 
     unit.appendChild(productItem);
     return unit;
 
   }
-
-}
-
-createTest();
